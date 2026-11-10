@@ -39,4 +39,4 @@ make cuda-fallback
 make cuda
 ```
 
-本仓库在 Apple M3 / macOS 26.7.1 上完成 C、汇编生成、Icarus Verilog 仿真与 CUDA host fallback 校验。该机器没有 NVIDIA GPU 与 CUDA Toolkit，所以仓库不声称完成 GPU 实机运行；真实 CUDA 路径保留在 `matmul.cu` 中，可在 CUDA 主机上直接用 `nvcc` 验证。
+本仓库先在 Apple M3 / macOS 26.7.1 上完成 C、汇编生成、Icarus Verilog 仿真与 CUDA host fallback 校验；随后于 2026-11-10 在 Google Colab 的 NVIDIA Tesla T4 上完成真实 CUDA 验证。云端环境为 NVIDIA 驱动 580.82.07、CUDA 13.0，使用 `nvcc -O2 matmul.cu -o matmul_cuda && ./matmul_cuda` 编译运行，输出矩阵为 `[[30,24,18],[84,69,54],[138,114,90]]`，与 C 和 Verilog 结果逐项一致。
